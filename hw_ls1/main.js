@@ -11,11 +11,11 @@ console.log(factorial(5));
 let reverseString = (inputString)=>{
     let tmpArray = inputString.split("");
     console.log(tmpArray);
-    let result = [];
+    let result = "";
     let i = 0;
     let j = tmpArray.length;
     while (j > 0) {
-        result[i++] = tmpArray[--j];
+        result += tmpArray[--j];
     }
     return result;
 }
@@ -38,9 +38,9 @@ console.log(translate('VN'));
 // Gợi ý : Sử dụng switch - case . Học viên tự nghĩ ra 1 vài mã quốc gia và câu chào tương ứng với quốc gia đó
 
 // Bài 4: Cho function truyền vào 1 chuỗi dài hơn 15 ký tự. Viết 1 function cắt chuỗi, lấy ra 10 ký tự đầu tiên và thêm vào dấu “…” ở cuối chuỗi.
-// let subString = (s)=>{
-//     return s.substring(0,10)+"...";
-// }
+let subString = (s)=>{
+    return s.substring(0,10)+"...";
+}
 let mySubString = (inputString,start,end)=>{
     let arr = inputString.split("");
     let result = "";
