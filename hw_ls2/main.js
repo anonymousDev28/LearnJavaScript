@@ -1,6 +1,11 @@
 // Câu 1. Tạo 1 thẻ p có id=“text”, có nội dung bất kỳ (có thể tạo bằng HTML hay Javascript - tùy chọn). Yêu cầu
 
 // Đặt màu văn bản thành #777
+let paragraph1 = document.createElement("p");
+paragraph1.style.color = "#777";
+paragraph1.id = "text";
+paragraph1.textContent = "sửa lại câu 1 sử dụng js thay vì html/css";
+document.body.insertAdjacentElement("afterbegin",paragraph1);
 // Đặt kích thước phông chữ thành 2rem
 // Đặt nội dung HTML thành Tôi có thể làm <em> bất cứ điều gì </em> tôi muốn với JavaScript.
 let para = document.querySelector("#text");
@@ -51,3 +56,51 @@ list[3].remove();
 let newLi = document.createElement("li");
 newLi.innerText = "hehe";
 list[2].insertAdjacentElement("afterend", newLi);
+// Thêm 1 nút “add” + 1 ô input để nhập text. Mỗi khi bấm nút thêm 1 thẻ <li> có nội dung là nội dung trong ô input vào cuối danh sách
+let inputElement = document.createElement("input");
+inputElement.type = "text";
+inputElement.placeholder = "Enter text ...";
+document.querySelector("#list").insertAdjacentElement("beforebegin",inputElement);
+let newBtn = document.createElement("button");
+newBtn.innerText = "Add";
+inputElement.insertAdjacentElement("afterend",newBtn);
+let addElement = ()=>{
+  let inputValue = inputElement.value;
+  if(inputValue.trim()===""){
+    alert("noi dung chua duoc nhap ");
+    return;
+  }
+  document.querySelector("#list").insertAdjacentHTML('beforeend',`<li>${inputValue}</li>`)
+  inputElement.value = "";
+}
+newBtn.addEventListener('click',addElement);
+// Thêm 1 nút “remove”. Chức năng để xóa thẻ <li> cuối cùng của danh sách
+let removeBtn = document.createElement("button");
+removeBtn.innerText = "Remove";
+let ul = document.querySelector("#list");
+newBtn.insertAdjacentElement("afterend",removeBtn);
+let removeFunction = ()=>{
+  let liLastChild = document.querySelector('#list li:last-child');
+  liLastChild.remove();
+}
+removeBtn.addEventListener('click',removeFunction);
+// Thêm 1 nút “Hide” trên đầu của danh sách <ul>.
+let hideBtn = document.createElement("button");
+hideBtn.innerText = "Hide";
+removeBtn.insertAdjacentElement("afterend",hideBtn);
+let toggleText = (button)=>{
+  if(button.innerHTML === "Hide"){
+    button.innerHTML = "Show";
+  }else if(button.innerHTML === "Show"){
+    button.innerHTML = "Hide"
+  }else{
+    null;
+  }
+}
+let hideFunction = ()=>{
+  ul.classList.toggle("hide");
+  toggleText(hideBtn);
+}
+hideBtn.addEventListener('click',hideFunction);
+// Khi bấm vào “Hide” thì <ul> sẽ ẩn. Đồng thời label của nút “Hide” => “Show”
+// Và ngược lại Khi bấm vào “Show” thì <ul> sẽ hiện. Đồng thời label của nút “Show” => “Hide”
