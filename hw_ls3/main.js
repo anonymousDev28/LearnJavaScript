@@ -34,8 +34,7 @@ products.push({
     count: 100
 })
 // 7. Xóa tất cả sản phẩm của thương hiệu "Samsung" trong giỏ hàng
-products.filter((product) => product.brand != 'Samsung'
-)
+products = products.filter((product) => product.brand != 'Samsung')
 // 8. Sắp xếp giỏ hàng theo price tăng dần
 products.sort((a, b) => {
     return a.price-b.price;
@@ -46,5 +45,13 @@ products.sort((a, b) => {
 })
 // 10. Lấy ra 2 sản phẩm bất kỳ trong giỏ hàng
 let random = ()=>Math.floor(Math.random()*1000)%(products.length-1);
-console.log(products[random()]);
-console.log(products[random()]);
+
+let getRandom2Product = ()=>{
+    let index1 = random();
+    let index2 = random();
+    while (index1 === index2) {
+        index2 = random();
+      }
+    return [products[index1],products[index2]];
+}
+console.log(getRandom2Product());
